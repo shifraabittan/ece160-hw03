@@ -9,6 +9,8 @@ typedef enum {
 typedef struct {
   char *first_name;
   char *last_name;
+  char *major_field;
+  char *year; 
   // TODO: add fields here for major and year
 } Student;
 
@@ -17,6 +19,12 @@ void print_student(Mode m, Student s) {
     case NAME_ONLY:
       printf("%s %s\n", s.first_name, s.last_name);
       break;
+	case MAJOR_AND_NAME:
+	  printf("%s %s %s\n", s.major_field, s.first_name, s.last_name);
+	  break;
+	 case YEAR_AND_NAME:
+	  printf("%s %s %s\n", s.year, s.first_name, s.last_name);
+	  break;
 	// TODO: handle other cases
   }
 }
@@ -27,16 +35,18 @@ void print_student(Mode m, Student s) {
 	the fields are all strings (char[])
 	except year is a number (int)
 */
-int main() {
+int main(int argc, char* argv[]) {
+  for (int i = 2; i < (argc - 1); i = i+4){
+  Student si;
+  si.first_name = argv[i];
+  si.last_name = argv[i+1];
+  si.major_field = argv[i+2];
+  si.year = argv[i+3];
+  print_student(argv[1][0], si);
+  }
+  return 0;
+  
   // TODO: parse argv to populate student structs 
   // for now, here's two hardcoded students:
-  Student s1, s2;
-  s1.first_name = "Julia";
-  s1.last_name = "A";
-  s2.first_name = "Peter";
-  s2.last_name = "Cooper";
-  
-  print_student(NAME_ONLY, s1);
-  print_student(NAME_ONLY, s2);
-  return 0;
+
 }
