@@ -38,7 +38,7 @@ void print_student(Mode m, Student s) {
 */
 int main(int argc, char* argv[]) {
 
-  for (int i = 2; i < argc; i = i+4){
+  for (int i = 2; i < argc; i = i++4){
   int mode_value;
   mode_value = atof(argv[1]);
 
