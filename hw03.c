@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef enum {
   NAME_ONLY = 0,
@@ -20,11 +21,11 @@ void print_student(Mode m, Student s) {
       printf("%s %s\n", s.first_name, s.last_name);
       break;
 	case MAJOR_AND_NAME:
-	  printf("%s %s %s\n", s.major_field, s.first_name, s.last_name);
-	  break;
+	    printf("%s %s %s\n", s.major_field, s.first_name, s.last_name);
+	    break;
 	 case YEAR_AND_NAME:
-	  printf("%s %s %s\n", s.year, s.first_name, s.last_name);
-	  break;
+	    printf("%s %s %s\n", s.year, s.first_name, s.last_name);
+	    break;
 	// TODO: handle other cases
   }
 }
@@ -36,13 +37,18 @@ void print_student(Mode m, Student s) {
 	except year is a number (int)
 */
 int main(int argc, char* argv[]) {
-  for (int i = 2; i < (argc - 1); i = i+4){
-  Student si;
-  si.first_name = argv[i];
-  si.last_name = argv[i+1];
-  si.major_field = argv[i+2];
-  si.year = argv[i+3];
-  print_student(argv[1][0], si);
+
+  for (int i = 2; i < argc; i = i+4){
+  int mode_value;
+  mode_value = atof(argv[1]);
+
+  Student s1;
+  s1.first_name = argv[i];
+  s1.last_name = argv[i+1];
+  s1.major_field = argv[i+2];
+  s1.year = argv[i+3];
+  
+  print_student(mode_value, s1);
   }
   return 0;
   
